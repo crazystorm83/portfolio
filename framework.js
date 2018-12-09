@@ -73,7 +73,7 @@
 
 })(window["ns"]);
 
-var p = ns.Create("ns.modules.drag", {
+var parent1 = ns.Create("ns.modules.drag", {
     init: function () {
         console.log("ns.modules.drag init function");
 
@@ -84,16 +84,32 @@ var p = ns.Create("ns.modules.drag", {
     }
 });
 
-var c = ns.Inherits("ns.modules.drag.table", "ns.modules.drag", {
+var inherit1 = ns.Inherits("ns.modules.drag.table", "ns.modules.drag", {
     init: function () {
         ns.modules.drag.prototype.init.apply(this, arguments);
         console.log("ns.modules.drag.table init function");
     }
 });
 
-var cc = ns.Inherits("ns.modules.drag.table.each", "ns.modules.drag.table", {
+
+var inherit11 = ns.Inherits("ns.modules.drag.table2", "ns.modules.drag.table", {
+    init: function () {
+        ns.modules.drag.prototype.init.apply(this, arguments);
+        console.log("ns.modules.drag.table override init function");
+    },
+
+    customFn1: function () {
+        console.log("ns.modules.drag.table - customFn1");
+    }
+});
+
+var inherit2 = ns.Inherits("ns.modules.drag.table.each", "ns.modules.drag.table", {
     init: function () {
         ns.modules.drag.table.prototype.init.apply(this, arguments);
         console.log("ns.modules.drag.table.each init function");
     }
-})
+});
+
+console.log(inherit1 instanceof ns.modules.drag);
+console.log(inherit1 instanceof ns.modules.drag.table);
+console.log(inherit1 instanceof Object); //모든 객체는 Object 를 상속받아서 Object 비교하면 항상 true
